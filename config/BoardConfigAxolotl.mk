@@ -4,13 +4,13 @@ ifneq ($(WITH_XPE_CHARGER),)
 endif
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-include vendor/xperience/config/BoardConfigQcom.mk
+include vendor/axolotl/config/BoardConfigQcom.mk
 endif
 
-include vendor/xperience/config/BoardConfigKernel.mk
+include vendor/axolotl/config/BoardConfigKernel.mk
 
 # soong
-include vendor/xperience/build/soong/soong_config.mk
-include vendor/xperience/config/BoardConfigSoong.mk
+include vendor/axolotl/build/soong/soong_config.mk
+include vendor/axolotl/config/BoardConfigSoong.mk
 
 PRODUCT_SOONG_NAMESPACES += $(PATHMAP_SOONG_NAMESPACES)

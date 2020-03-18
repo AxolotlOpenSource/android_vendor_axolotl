@@ -1,7 +1,7 @@
 # Inherit common CM stuff
-$(call inherit-product, vendor/xperience/config/common.mk)
+$(call inherit-product, vendor/axolotl/config/common.mk)
 
 PRODUCT_SIZE := mini
 
 # Include XPe audio files
-include vendor/xperience/config/xpe_audio.mk
+include vendor/axolotl/config/xpe_audio.mk

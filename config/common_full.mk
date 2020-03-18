@@ -1,5 +1,5 @@
-# Inherit common xperience stuff
-$(call inherit-product, vendor/xperience/config/common.mk)
+# Inherit common axolotl stuff
+$(call inherit-product, vendor/axolotl/config/common.mk)
 
 PRODUCT_SIZE := full
 

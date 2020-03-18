@@ -126,7 +126,7 @@ def get_manifest_path():
 
 def get_default_revision():
     m = ElementTree.parse(get_manifest_path())
-    d = m.findall('default')[0]
+    d = m.findall('roomservice')[0]
     r = d.get('revision')
     return r.replace('refs/heads/', '').replace('refs/tags/', '')
 

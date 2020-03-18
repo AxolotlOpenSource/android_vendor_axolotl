@@ -1,11 +1,11 @@
-# Inherit common xperience stuff
-$(call inherit-product, vendor/xperience/config/common_full.mk)
+# Inherit common axolotl stuff
+$(call inherit-product, vendor/axolotl/config/common_full.mk)
 
 # Required CM packages
 PRODUCT_PACKAGES += \
     LatinIME
 
 # Include CM LatinIME dictionaries
-    PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
+    PRODUCT_PACKAGE_OVERLAYS += vendor/axolotl/overlay/dictionaries
 
-$(call inherit-product, vendor/xperience/config/telephony.mk)
+$(call inherit-product, vendor/axolotl/config/telephony.mk)
