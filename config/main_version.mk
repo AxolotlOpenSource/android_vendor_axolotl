@@ -1,13 +1,13 @@
 # XPerience System Properties
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.xpe.version=$(XPE_VERSION) \
-    ro.xpe.releasetype=$(XPE_BUILDTYPE) \
-    ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
+    ro.ax.version=$(XPE_VERSION) \
+    ro.ax.releasetype=$(XPE_BUILDTYPE) \
+    ro.axolotl.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.ax.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
-    ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Qusongite \
-    ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
+    ro.ax.model=$(XPERIENCE_BUILD) \
+    ro.ax.codename=Qusongite \
+    ro.ax.egal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 # Build fingerprint
@@ -21,7 +21,7 @@ XPE_DISPLAY_VERSION := $(XPE_VERSION)
 CAF_BRANCH := LA.UM.8.1.r1-14500-sm8150.0 
 
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
+    ro.ax.display.version=$(XPE_DISPLAY_VERSION)
 
 ADDITIONAL_BUILD_PROPERTIES += \
     persist.backup.ntpServer=0.pool.ntp.org \

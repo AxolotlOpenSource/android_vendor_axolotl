@@ -18,19 +18,6 @@ LOCAL_PATH := $(call my-dir)
 # Prebuilt APKs
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := XPeriaHome
-LOCAL_MODULE_OWNER := sony
-LOCAL_SRC_FILES := common/app/LauncherXPeria/Launcher.apk
-LOCAL_OVERRIDES_PACKAGES := Launcher2 Launcher3PixelGo Launcher3Pixel
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_PRIVILEGED_MODULE := true
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_DEX_PREOPT := false
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := WeatherClient
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := common/app/WeatherClient/WeatherClient.apk
@@ -94,34 +81,10 @@ LOCAL_CERTIFICATE := shared
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := Gcam_Whyred
-LOCAL_MODULE_OWNER := google
-LOCAL_SRC_FILES := common/app/Gcam/Gcam_Whyred/Gcam_Whyred.apk
-LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2 
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := MotCamera
 LOCAL_MODULE_OWNER := motorola
 LOCAL_SRC_FILES := common/app/MotCamera/MotCamera.apk
 LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := XPerienceCamera
-LOCAL_MODULE_OWNER := bq
-LOCAL_SRC_FILES := common/app/XPerienceCamerabq/XPerienceCamerabq.apk
-LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2 MotCamera
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS

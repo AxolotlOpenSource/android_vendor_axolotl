@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func xperienceExpandVariables(ctx android.ModuleContext, in string) string {
-	xperienceVars := ctx.Config().VendorConfig("xperienceVarsPlugin")
+func axolotlExpandVariables(ctx android.ModuleContext, in string) string {
+	axolotlVars := ctx.Config().VendorConfig("axolotlVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if xperienceVars.IsSet(name) {
-			return xperienceVars.String(name), nil
+		if axolotlVars.IsSet(name) {
+			return axolotlVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand

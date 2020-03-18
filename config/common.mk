@@ -10,7 +10,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
  # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,,$(shell ls -1 vendor/xperience/prebuilt/common/bootanimation | sort -rn))
+bootanimation_sizes := $(subst .zip,,$(shell ls -1 vendor/axolotl/prebuilt/common/bootanimation | sort -rn))
 
  # find the appropriate size and set
 define check_and_set_bootanimation
@@ -25,7 +25,7 @@ $(eval TARGET_BOOTANIMATION_NAME := $(shell \
 endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
-PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/axolotl/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
 PRODUCT_COPY_FILES += $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
@@ -58,12 +58,8 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
-# Copy over the changelog to the device
-PRODUCT_COPY_FILES += \
-    vendor/xperience/DONATORS.mkdn:$(TARGET_COPY_OUT_SYSTEM)/etc/donators.txt
-
 # Lower RAM devices
-ifeq ($(XPE_LOW_RAM_DEVICE),true)
+ifeq ($(AX_LOW_RAM_DEVICE),true)
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_HAS_LOW_RAM := true
 
@@ -78,68 +74,68 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/xperience/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/xperience/prebuilt/common/bin/50-xpe.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xpe.sh \
-    vendor/xperience/prebuilt/common/bin/blacklist:$(TARGET_COPY_OUT_SYSTEM)/addon.d/blacklist
+    vendor/axolotl/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/axolotl/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/axolotl/prebuilt/common/bin/50-xpe.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xpe.sh \
+    vendor/axolotl/prebuilt/common/bin/blacklist:$(TARGET_COPY_OUT_SYSTEM)/addon.d/blacklist
 
 ifneq ($(AB_OTA_PARTITIONS),)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/axolotl/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/axolotl/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/axolotl/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
 # Clean up packages cache to avoid wrong strings and resources
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/bin/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
+    vendor/axolotl/prebuilt/bin/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
 
 # Fonts
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Regular.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Regular.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Medium.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Medium.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-MediumItalic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Italic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Italic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Bold.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Bold.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-BoldItalic.ttf
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-Regular.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Regular.ttf \
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-Medium.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Medium.ttf \
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-MediumItalic.ttf \
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-Italic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Italic.ttf \
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-Bold.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Bold.ttf \
+    vendor/axolotl/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-BoldItalic.ttf
 
 #Falcon Tweaking
-ifeq ($(XPE_BUILD), falcon)
+ifeq ($(AX_BUILD), falcon)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/01XPerienceKernelCOnf
+    vendor/axolotl/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/01XPerienceKernelCOnf
 endif
 
-ifeq ($(XPE_BUILD), ghost)
+ifeq ($(AX_BUILD), ghost)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/02XPerienceColorcalib:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/02XPerienceColorcalib
+    vendor/axolotl/prebuilt/common/etc/init.d/02XPerienceColorcalib:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/02XPerienceColorcalib
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
+    vendor/axolotl/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/00banner:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/00banner \
-    vendor/xperience/prebuilt/common/bin/sysinit:$(TARGET_COPY_OUT_SYSTEM)/bin/sysinit
+    vendor/axolotl/prebuilt/common/etc/init.d/00banner:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/00banner \
+    vendor/axolotl/prebuilt/common/bin/sysinit:$(TARGET_COPY_OUT_SYSTEM)/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/90userinit:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/90userinit
+    vendor/axolotl/prebuilt/common/etc/init.d/90userinit:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/90userinit
 endif
 
-# Copy all xperience-specific init rc files
-$(foreach f,$(wildcard vendor/xperience/prebuilt/common/etc/init/*.rc),\
+# Copy all axolotl-specific init rc files
+$(foreach f,$(wildcard vendor/axolotl/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/lib/content-types.properties:$(TARGET_COPY_OUT_SYSTEM)/lib/content-types.properties
+    vendor/axolotl/prebuilt/common/lib/content-types.properties:$(TARGET_COPY_OUT_SYSTEM)/lib/content-types.properties
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
+    vendor/axolotl/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -149,33 +145,33 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is xperience!
+# This is axolotl!
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/mx.xperience.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.xperience.android.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xpe-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-xpe-product.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xpe-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-xpe-system.xml
+    vendor/axolotl/config/permissions/mx.axolotl.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.axolotl.android.xml \
+    vendor/axolotl/config/permissions/privapp-permissions-ax-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-ax-product.xml \
+    vendor/axolotl/config/permissions/privapp-permissions-ax-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-ax-system.xml
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/xperience-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/xperience-hiddenapi-package-whitelist.xml
+    vendor/axolotl/config/permissions/xperience-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/xperience-hiddenapi-package-whitelist.xml
 
 # Power whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/xperience-power-whitelist.xml:system/etc/sysconfig/xperience-power-whitelist.xml
+    vendor/axolotl/config/permissions/xperience-power-whitelist.xml:system/etc/sysconfig/xperience-power-whitelist.xml
 
 # Markup Google
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/lib/libsketchology_native.so:system/lib/libsketchology_native.so \
-    vendor/xperience/prebuilt/lib64/libsketchology_native.so:system/lib64/libsketchology_native.so
+    vendor/axolotl/prebuilt/lib/libsketchology_native.so:system/lib/libsketchology_native.so \
+    vendor/axolotl/prebuilt/lib64/libsketchology_native.so:system/lib64/libsketchology_native.so
 
 # Include AOSP audio files
-include vendor/xperience/config/aosp_audio.mk
+include vendor/axolotl/config/aosp_audio.mk
 
-# Include xperience audio files
-include vendor/xperience/config/xpe_audio.mk
+# Include axolotl audio files
+include vendor/axolotl/config/xpe_audio.mk
 
 # Use signing keys for only official builds
-ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
+ifeq ($(AXOLOTL_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
     PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
 
@@ -194,7 +190,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/xperience/config/twrp.mk
+include vendor/axolotl/config/twrp.mk
 endif
 
 # Do not include art debug targets
@@ -337,14 +333,7 @@ PRODUCT_PACKAGES += \
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images \
-
-# Custom off-mode charger
-ifneq ($(WITH_XPE_CHARGER),false)
-PRODUCT_PACKAGES += \
-    xpe_charger_res_images \
-    font_log.png \
-    libhealthd.xpe
-endif
+    product_charger_res_images
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -397,97 +386,97 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.root_access=0
 
 DEVICE_PACKAGE_OVERLAYS += \
-    vendor/xperience/overlay/common
+    vendor/axolotl/overlay/common
 
 PRODUCT_VERSION_MAJOR = 14
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0
 PRODUCT_NAME = Quetzalcoatlite
 
-ifndef XPERIENCE_CHANNEL
-    XPERIENCE_CHANNEL := UNOFFICIAL
+ifndef AXOLOTL_CHANNEL
+    AXOLOTL_CHANNEL := UNOFFICIAL
 endif
 
 ###########################################################################
-# Set XPE_BUILDTYPE from the env RELEASE_TYPE
+# Set AX_BUILDTYPE from the env RELEASE_TYPE
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    XPE_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    AX_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    XPE_VERSION_MAINTENANCE := 0
+    AX_VERSION_MAINTENANCE := 0
 endif
 
-# Set XPE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set AX_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef XPE_BUILDTYPE
+ifndef AX_BUILDTYPE
     ifdef RELEASE_TYPE
-        # Starting with "XPE_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^XPE_||g')
-        XPE_BUILDTYPE := $(RELEASE_TYPE)
+        # Starting with "AX_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^AX_||g')
+        AX_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY HOMEBREW WEEKLY SNAPSHOT EXPERIMENTAL STABLERELEASE,$(XPE_BUILDTYPE)),)
-    XPE_BUILDTYPE :=
+ifeq ($(filter RELEASE NIGHTLY HOMEBREW WEEKLY SNAPSHOT EXPERIMENTAL STABLERELEASE,$(AX_BUILDTYPE)),)
+    AX_BUILDTYPE :=
 endif
 
-ifdef XPE_BUILDTYPE
-    ifneq ($(XPE_BUILDTYPE), SNAPSHOT)
-        ifdef XPE_EXTRAVERSION
+ifdef AX_BUILDTYPE
+    ifneq ($(AX_BUILDTYPE), SNAPSHOT)
+        ifdef AX_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            XPE_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from XPE_EXTRAVERSION
-            XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to XPE_EXTRAVERSION
-            XPE_EXTRAVERSION := -$(XPE_EXTRAVERSION)
+            AX_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from AX_EXTRAVERSION
+            AX_EXTRAVERSION := $(shell echo $(AX_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to AX_EXTRAVERSION
+            AX_EXTRAVERSION := -$(AX_EXTRAVERSION)
         endif
     else
-        ifndef XPE_EXTRAVERSION
+        ifndef AX_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            XPE_BUILDTYPE := EXPERIMENTAL
+            AX_BUILDTYPE := EXPERIMENTAL
         else
-            # Remove leading dash from XPE_EXTRAVERSION
-            XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to XPE_EXTRAVERSION
-            XPE_EXTRAVERSION := -$(XPE_EXTRAVERSION)
+            # Remove leading dash from AX_EXTRAVERSION
+            AX_EXTRAVERSION := $(shell echo $(AX_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to AX_EXTRAVERSION
+            AX_EXTRAVERSION := -$(AX_EXTRAVERSION)
         endif
     endif
 else
-    # If XPE_BUILDTYPE is not defined, set to UNOFFICIAL
+    # If AX_BUILDTYPE is not defined, set to UNOFFICIAL
 ifeq ($(PRODUCT_EXPERIMENTAL),1)
-    XPE_BUILDTYPE := EXPERIMENTAL
-    XPE_EXTRAVERSION :=
+    AX_BUILDTYPE := EXPERIMENTAL
+    AX_EXTRAVERSION :=
 else
-    XPE_BUILDTYPE := HOMEBREW
-    XPE_EXTRAVERSION :=
+    AX_BUILDTYPE := HOMEBREW
+    AX_EXTRAVERSION :=
 endif
 endif
 
-ifeq ($(XPE_BUILDTYPE), UNOFFICIAL HOMEBREW)
+ifeq ($(AX_BUILDTYPE), UNOFFICIAL HOMEBREW)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        XPE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        AX_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(XPE_BUILDTYPE), RELEASE)
+ifeq ($(AX_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+        AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(AX_BUILDTYPE)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            ifeq ($(XPE_VERSION_MAINTENANCE),0)
-                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+            ifeq ($(AX_VERSION_MAINTENANCE),0)
+                AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
             else
-                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+                AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
             endif
         else
-            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+            AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
         endif
     endif
 else
-    ifeq ($(XPE_VERSION_MAINTENANCE),0)
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+    ifeq ($(AX_VERSION_MAINTENANCE),0)
+        AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(AX_BUILDTYPE)$(AX_EXTRAVERSION)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
     else
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPERIENCE_BUILD)-$(PRODUCT_NAME)
+        AX_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(AX_BUILDTYPE)$(AX_EXTRAVERSION)-$(AXOLOTL_BUILD)-$(PRODUCT_NAME)
     endif
 endif
 
@@ -496,19 +485,19 @@ endif
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-    ifneq ($(XPE_BUILDTYPE), UNOFFICIAL)
+    ifneq ($(AX_BUILDTYPE), UNOFFICIAL)
         ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-            ifneq ($(XPE_EXTRAVERSION),)
-        		# Remove leading dash from XPE_EXTRAVERSION
-                XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
-                TARGET_VENDOR_RELEASE_BUILD_ID := $(XPE_EXTRAVERSION)
+            ifneq ($(AX_EXTRAVERSION),)
+        		# Remove leading dash from AX_EXTRAVERSION
+                AX_EXTRAVERSION := $(shell echo $(AX_EXTRAVERSION) | sed 's/-//')
+                TARGET_VENDOR_RELEASE_BUILD_ID := $(AX_EXTRAVERSION)
             else
                 TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
             endif
         else
             TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
         endif
-            XPE_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(PRODUCT_NAME)
+            AX_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(PRODUCT_NAME)
      endif
 endif
 endif

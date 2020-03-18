@@ -6,7 +6,7 @@
 export C=/tmp/backupdir
 export SYSDEV="$(readlink -nf "$2")"
 export SYSFS="$3"
-export V=14.0
+export V=1.0
 
 export ADDOND_VERSION=1
 
@@ -49,7 +49,7 @@ check_prereq() {
 if [ ! -r $S/build.prop ]; then
     return 0
 fi
-if ! grep -q "^ro.xpe.version=$V.*" $S/build.prop; then
+if ! grep -q "^ro.ax.version=$V.*" $S/build.prop; then
   echo "Not backing up files from incompatible version: $V"
   return 0
 fi

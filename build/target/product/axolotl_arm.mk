@@ -1,5 +1,5 @@
-# Copyright (C) 2015 The CyanogenMod Project
-#           (C) 2011-2018 The XPerience Project
+# Copyright (C) 2018 The XPerience Project
+# Copyright (C) 2018-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILD_RRO_SYSTEM_PACKAGE := $(TOP)/vendor/axolotl/build/core/system_rro.mk
+$(call inherit-product, build/target/product/aosp_arm.mk)
 
-# We modify several neverallows, so let the build proceed
-ifneq ($(TARGET_BUILD_VARIANT),user)
-SELINUX_IGNORE_NEVERALLOWS := true
-endif
+include vendor/axolotl/build/target/product/axolotl_generic_target.mk
+
+TARGET_USES_64_BIT_BINDER := true
+
+PRODUCT_NAME := axolotl_arm

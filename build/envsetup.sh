@@ -1,6 +1,6 @@
 function __print_lineage_functions_help() {
 cat <<EOF
-Additional LineageOS functions:
+Additional Axolotl OS functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
@@ -20,7 +20,7 @@ Additional LineageOS functions:
 - repopick:        Utility to fetch changes from Gerrit.
 - installboot:     Installs a boot.img to the connected device.
 - installrecovery: Installs a recovery.img to the connected device.
-- xpepush:         push to xpe (only on allowed pc yes im lazy to write everytime)
+- axpush:         push to xpe (only on allowed pc yes im lazy to write everytime)
 EOF
 }
 
@@ -79,12 +79,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the xperience model name
+            # This is probably just the axolot model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
 
-            lunch xperience_$target-$variant
+            lunch axolotl_$target-$variant
         fi
     fi
     return $?
@@ -95,8 +95,8 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        MODVERSION=$(get_build_var XPE_VERSION)
-        ZIPFILE=xperience-$MODVERSION.zip
+        MODVERSION=$(get_build_var AXOLOTL_VERSION)
+        ZIPFILE=axolotl-$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
@@ -111,7 +111,7 @@ function eat()
             done
             echo "Device Found.."
         fi
-        if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD"); then
+        if (adb shell getprop ro.ax.device | grep -q "$AXOLOTL_BUILD"); then
             # if adbd isn't root we can't write to /cache/recovery/
             adb root
             sleep 1
@@ -127,7 +127,7 @@ EOF
             fi
             rm /tmp/command
         else
-            echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
+            echo "The connected device does not appear to be $AXOLOTL_BUILD, run away!"
         fi
         return $?
     else
@@ -404,14 +404,14 @@ MANIFEST="${TOP}/.repo/manifest.xml"
 BRANCH=$(grep "default revision" "${MANIFEST}" \
         | sed 's/^ *//g;s/<default revision=\"refs\/tags\///g;s/\"//g')
     git fetch caf
-    git branch rm xpe-14.0 2> /dev/null
-    git checkout -b xpe-14.0
+    git branch rm ax-Q 2> /dev/null
+    git checkout -b ax-Q
     git merge --no-edit --log $BRANCH
 }
 
-function xpepush()
+function axpush()
 {
-    git push xpe HEAD:xpe-14.0  
+    git push ax HEAD:ax-Q
 }
 
 function installboot()
@@ -444,7 +444,7 @@ function installboot()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 > /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD");
+    if (adb shell getprop ro.ax.device | grep -q "$AXOLOTL_BUILD");
     then
         adb push $OUT/boot.img /cache/
         if [ -e "$OUT/system/lib/modules/*" ];
@@ -458,7 +458,7 @@ function installboot()
         adb shell dd if=/cache/boot.img of=$PARTITION
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
+        echo "The connected device does not appear to be $AXOLOTL_BUILD, run away!"
     fi
 }
 
@@ -492,13 +492,13 @@ function installrecovery()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 >> /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD");
+    if (adb shell getprop ro.ax.device | grep -q "$AXOLOTL_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
+        echo "The connected device does not appear to be $AXOLOTL_BUILD, run away!"
     fi
 }
 
@@ -809,7 +809,7 @@ function mka() {
         source $vendor_hal_script --check
         regen_needed=$?
     else
-        vendor_hal_script=$ANDROID_BUILD_TOP/vendor/xperience/build/vendor_hal_makefile_generator.sh
+        vendor_hal_script=$ANDROID_BUILD_TOP/vendor/axolotl/build/vendor_hal_makefile_generator.sh
         regen_needed=1
     fi
 
@@ -901,7 +901,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop ro.ax.device | grep -q "$AXOLOTL_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -1019,7 +1019,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
+        echo "The connected device does not appear to be $AXOLOTL_BUILD, run away!"
     fi
 }
 
@@ -1032,14 +1032,14 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/xperience/build/tools/repopick.py $@
+    $T/vendor/axolotl/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
     common_target_out=common-${target_device}
-    if [ ! -z $XPERIENCE_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $AXOLOTL_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_target_out} ${common_out_dir}

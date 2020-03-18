@@ -1,5 +1,5 @@
 # Include XPerience versions
-include vendor/xperience/config/main_version.mk
+include vendor/axolotl/config/main_version.mk
 
 # MSIM manual provisioning
 #PRODUCT_PACKAGES += telephony-ext

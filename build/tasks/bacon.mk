@@ -17,10 +17,10 @@
 # Lineage OTA update package
 
 
-XPE_TARGET_PACKAGE := $(PRODUCT_OUT)/xperience-$(XPE_VERSION).zip
+AXOLOTL_TARGET_PACKAGE := $(PRODUCT_OUT)/axolotl-$(AX_VERSION).zip
 
 .PHONY: bacon
 bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(XPE_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(XPE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(XPE_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(XPE_TARGET_PACKAGE)" >&2
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(AXOLOTL_TARGET_PACKAGE)
+	$(hide) $(MD5SUM) $(AXOLOTL_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(AXOLOTL_TARGET_PACKAGE).md5sum
+	@echo "Package Complete: $(AXOLOTL_TARGET_PACKAGE)" >&2
