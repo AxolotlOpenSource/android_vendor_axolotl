@@ -1,12 +1,17 @@
 # XPerience System Properties
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.ax.version=$(XPE_VERSION) \
-    ro.ax.releasetype=$(XPE_BUILDTYPE) \
+    ro.ax.version=$(AX_VERSION) \
+    ro.ax.releasetype=$(AX_BUILDTYPE) \
     ro.axolotl.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.ax.channeltype=$(XPERIENCE_CHANNEL) \
-    ro.modversion=$(XPE_VERSION) \
-    ro.ax.model=$(XPERIENCE_BUILD) \
-    ro.ax.codename=Qusongite \
+    ro.ax.channeltype=$(AXOLOTL_CHANNEL) \
+    ro.axolotl.version=$(AX_VERSION) \
+    ro.axolotl.releasetype=$(AX_BUILDTYPE) \
+    ro.ax.channeltype=$(AXOLOTL_CHANNEL) \
+    ro.modversion=$(AX_VERSION) \
+    ro.ax.model=$(AXOLOTL_BUILD) \
+    ro.ax.codename=Quelea \
+    ro.axolotl.model=$(AXOLOTL_BUILD) \
+    ro.axolotl.codename=Quelea \
     ro.ax.egal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
@@ -16,12 +21,12 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
 endif
 
-XPE_DISPLAY_VERSION := $(XPE_VERSION)
+AX_DISPLAY_VERSION := $(AX_VERSION)
 
 CAF_BRANCH := LA.UM.8.1.r1-14500-sm8150.0 
 
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.ax.display.version=$(XPE_DISPLAY_VERSION)
+    ro.ax.display.version=$(AX_DISPLAY_VERSION)
 
 ADDITIONAL_BUILD_PROPERTIES += \
     persist.backup.ntpServer=0.pool.ntp.org \
