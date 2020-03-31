@@ -4,6 +4,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.ax.releasetype=$(AX_BUILDTYPE) \
     ro.axolotl.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.ax.channeltype=$(AXOLOTL_CHANNEL) \
+    ro.axolotl.channeltype=$(AXOLOTL_CHANNEL) \
     ro.axolotl.version=$(AX_VERSION) \
     ro.axolotl.releasetype=$(AX_BUILDTYPE) \
     ro.ax.channeltype=$(AXOLOTL_CHANNEL) \
