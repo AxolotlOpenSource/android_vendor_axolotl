@@ -241,19 +241,16 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    Alessa \
     CommandCenter3 \
     ExactCalculator \
     DeskClock \
     Launcher3QuickStep \
     NightFallQuickStep \
-    Notes \
     SubstratumSignature \
     WeatherClient \
     XPeriaHome \
     XMusic \
     XPeriaWeather \
-    XPerienceWallpapers \
     XPerienceOverlayStub \
     Yunikon
 else
@@ -275,10 +272,8 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    Alessa \
     CommandCenter3 \
     ExactCalculator \
-    Notes \
     NightFallQuickStepGo \
     Launcher3QuickStepGo \
     WeatherClient \

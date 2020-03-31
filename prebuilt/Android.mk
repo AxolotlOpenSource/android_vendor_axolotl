@@ -40,27 +40,6 @@ LOCAL_DEX_PREOPT := false
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := Alessa
-LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/Alessa_2.0.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := Notes
-LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/XPerienceNotes/Notes.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := CommandCenter3
 LOCAL_MODULE_OWNER := xpe
 LOCAL_SRC_FILES := common/app/CommandCenter3/CommandCenter3.apk
@@ -68,28 +47,6 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := XPerienceWallpapers
-LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/XPerienceWallpapers/XPerienceWallpapers.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := shared
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := MotCamera
-LOCAL_MODULE_OWNER := motorola
-LOCAL_SRC_FILES := common/app/MotCamera/MotCamera.apk
-LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_PRIVILEGED_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
